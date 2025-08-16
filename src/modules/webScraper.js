@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import robotsParser from 'robots-parser';
 import UserAgent from 'user-agents';
 import { PrismaClient } from '@prisma/client';
