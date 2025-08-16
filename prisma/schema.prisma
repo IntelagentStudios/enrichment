@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
@@ -20,7 +19,6 @@ model EnrichmentCache {
   
   @@index([domain])
   @@index([expiresAt])
-  @@schema("sales_agent")
 }
 
 model EmailValidation {
@@ -35,7 +33,6 @@ model EmailValidation {
   
   @@index([email])
   @@index([domain])
-  @@schema("sales_agent")
 }
 
 model EnrichmentJob {
@@ -54,7 +51,6 @@ model EnrichmentJob {
   @@index([status])
   @@index([domain])
   @@index([createdAt])
-  @@schema("sales_agent")
 }
 
 model ScrapedPage {
@@ -69,5 +65,4 @@ model ScrapedPage {
   
   @@unique([domain, path])
   @@index([domain])
-  @@schema("sales_agent")
 }
