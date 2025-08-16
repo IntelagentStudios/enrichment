@@ -33,9 +33,16 @@ const logger = winston.createLogger({
 const validateRequest = (req, res, next) => {
   const apiKey = req.headers['x-api-key'];
   
-  // Simple API key validation (implement proper auth in production)
-  if (process.env.NODE_ENV === 'production' && !apiKey) {
-    return res.status(401).json({ error: 'API key required' });
+  // Simple API key validation
+  if (process.env.NODE_ENV === 'production') {
+    if (!apiKey) {
+      return res.status(401).json({ error: 'API key required' });
+    }
+    
+    // Check against environment variable if set
+    if (process.env.API_KEY && apiKey !== process.env.API_KEY) {
+      return res.status(401).json({ error: 'Invalid API key' });
+    }
   }
   
   next();
