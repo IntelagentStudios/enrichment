@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 import * as cheerio from 'cheerio';
 import robotsParser from 'robots-parser';
 import UserAgent from 'user-agents';
@@ -53,6 +53,7 @@ class WebScraper {
     if (!this.browser) {
       this.browser = await puppeteer.launch({
         headless: this.options.headless,
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium',
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
